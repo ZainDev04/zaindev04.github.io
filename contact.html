@@ -98,6 +98,8 @@ code{font-family:var(--mono);font-size:.85em;background:var(--card);
 
 /* ---------- hero figure ---------- */
 figure.split{margin:2.4rem 0 1rem;padding:0}
+@media(min-width:1000px){figure.split{width:58rem;margin-left:-8.5rem;margin-right:-8.5rem}
+  figure.split .legend,figure.split figcaption{max-width:41rem;margin-left:auto;margin-right:auto}}
 .canvwrap{position:relative;border:1px solid var(--rule);border-radius:4px;
   background:var(--card);overflow:hidden}
 canvas{display:block;width:100%;height:auto}
@@ -224,19 +226,24 @@ document.addEventListener('DOMContentLoaded',function(){
 
   function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
 
+  var CY=0,RS=[];
   function layout(){
-    W=cv.clientWidth;H=Math.round(Math.max(190,W*0.44));
+    W=cv.clientWidth;
+    var slot=W/(GROUPS.length+1), RMAX=Math.min(62,slot*0.44);
+    RS=GROUPS.map(function(g){return Math.max(14,Math.min(RMAX,Math.sqrt(g.n)*3.6))});
+    var maxR=Math.max.apply(null,RS);
+    H=Math.round(Math.max(140,maxR*2.55+60));
     cv.width=W*DPR;cv.height=H*DPR;cv.style.height=H+'px';
     ctx.setTransform(DPR,0,0,DPR,0,0);
-    var cx=W/2,cy=H/2,i=0,gi=0,slot=W/(GROUPS.length+1);
+    var cx=W/2; CY=(H-24)/2;
     pts=[];
     GROUPS.forEach(function(g,k){
-      var tx=slot*(k+1), r=Math.max(18,Math.min(52,Math.sqrt(g.n)*3.6));
+      var tx=slot*(k+1), r=RS[k];
       for(var j=0;j<g.n;j++){
         var a=Math.random()*Math.PI*2,rr=Math.sqrt(Math.random());
         pts.push({
-          x0:cx+(Math.random()-.5)*W*0.42, y0:cy+(Math.random()-.5)*H*0.46,
-          x1:tx+Math.cos(a)*rr*r,          y1:cy+Math.sin(a)*rr*r*1.15,
+          x0:cx+(Math.random()-.5)*W*0.30, y0:CY+(Math.random()-.5)*H*0.52,
+          x1:tx+Math.cos(a)*rr*r,          y1:CY+Math.sin(a)*rr*r*1.22,
           hi:g.hi, d:Math.random()*0.34
         })
       }
@@ -251,7 +258,7 @@ document.addEventListener('DOMContentLoaded',function(){
     if(bo>0.01){
       ctx.strokeStyle=mut;ctx.globalAlpha=bo*0.35;ctx.lineWidth=1;
       ctx.setLineDash([3,4]);
-      ctx.strokeRect(W/2-W*0.24,H/2-H*0.28,W*0.48,H*0.56);
+      ctx.strokeRect(W/2-W*0.17,CY-H*0.30,W*0.34,H*0.60);
       ctx.setLineDash([]);ctx.globalAlpha=1;
     }
     pts.forEach(function(p){
