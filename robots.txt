@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
 
-# Build artefact, not content: the generator that renders assets/og.png
-Disallow: /assets/og-source.html
-
 Sitemap: https://zaindev04.github.io/sitemap.xml
