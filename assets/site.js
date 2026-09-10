@@ -243,11 +243,11 @@
     var DPR = Math.min(window.devicePixelRatio || 1, 2);
 
     var GROUPS = [
-      { n: 250, label: '3,365', name: 'plateau',       hi: false },
-      { n: 218, label: '2,920', name: 'establishing',  hi: false },
-      { n: 58,  label: '735',   name: 'high-exposure', hi: true  },
-      { n: 46,  label: '588',   name: 'intermittent',  hi: false },
-      { n: 40,  label: '522',   name: 'long-form',     hi: false }
+      { n: 250, label: '3,365', name: 'recently published, establishing', hi: false },
+      { n: 218, label: '2,920', name: 'long-tenured, settled low',        hi: false },
+      { n: 58,  label: '735',   name: 'high-yield, mis-bucketed',         hi: true  },
+      { n: 46,  label: '588',   name: 'intermittent exposure',            hi: false },
+      { n: 40,  label: '522',   name: 'unlisted remainder',               hi: false }
     ];
 
     var W = 0, H = 0, CY = 0, RS = [], pts = [];

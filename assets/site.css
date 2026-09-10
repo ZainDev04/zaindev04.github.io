@@ -434,9 +434,16 @@ ul.list li::before{
 .vrow.cut .nm{text-decoration:line-through;text-decoration-color:var(--muted);color:var(--muted)}
 .vrow.cut .track b{background:var(--muted);opacity:.3}
 .vrow.cut .tag{color:var(--muted);opacity:.85}
-@media (max-width:560px){
-  .vrow{grid-template-columns:1fr auto}
+/* The paper's archetype names are long ("Recently Published, Establishing"),
+   so the name column sizes to content and the track absorbs what's left. */
+@media (max-width:820px){
+  .vrow{grid-template-columns:1fr auto;gap:.45rem .8rem}
   .vrow .track{grid-column:1/-1;order:3}
+  .vrow .nm{white-space:normal;line-height:1.45}
+}
+@media (max-width:560px){
+  .vrow{font-size:.72rem;padding:.68rem .8rem}
+  .vrow .tag{font-size:.65rem}
 }
 
 /* pull quote */
