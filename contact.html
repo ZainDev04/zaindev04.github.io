@@ -10,6 +10,8 @@
   --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
   --serif:Charter,"Bitstream Charter","Iowan Old Style",Georgia,serif;
   --ease:cubic-bezier(.22,.68,.36,1);
+  /* responsive scale — overridden per breakpoint at the bottom of this sheet */
+  --wrap:44rem;--fs:18px;--h1:2.15rem;--top:3.2rem;
 }
 :root[data-theme=dark],
 html:not([data-theme=light]) body.auto-dark{}
@@ -26,10 +28,10 @@ html:not([data-theme=light]) body.auto-dark{}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--fg);
-  font-family:var(--serif);font-size:18px;line-height:1.65;
+  font-family:var(--serif);font-size:var(--fs);line-height:1.65;
   -webkit-font-smoothing:antialiased;
   transition:background .5s var(--ease),color .5s var(--ease)}
-.wrap{max-width:44rem;margin:0 auto;padding:0 1.5rem}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 1.5rem}
 
 /* ---------- header ---------- */
 header{position:sticky;top:0;z-index:50;
@@ -63,14 +65,14 @@ nav a[aria-current]{color:var(--fg)}
 }
 
 /* ---------- type ---------- */
-main{padding-top:3.2rem}
-h1{font-size:2.15rem;line-height:1.19;letter-spacing:-.022em;margin:0 0 1.3rem;font-weight:600}
+main{padding-top:var(--top)}
+h1{font-size:var(--h1);line-height:1.19;letter-spacing:-.022em;margin:0 0 1.3rem;font-weight:600}
 h2{font-family:var(--mono);font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;
   color:var(--muted);font-weight:500;margin:3.4rem 0 1rem}
-h3{font-size:1.12rem;margin:2.1rem 0 .5rem;font-weight:600}
+h3{font-size:1.12em;margin:2.1rem 0 .5rem;font-weight:600}
 p{margin:0 0 1.15rem}
 a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
-.lede{font-size:1.2rem;line-height:1.56}
+.lede{font-size:1.2em;line-height:1.56}
 .muted{color:var(--muted)}
 ul{padding-left:1.15rem}li{margin-bottom:.5rem}
 code{font-family:var(--mono);font-size:.85em;background:var(--card);
@@ -98,8 +100,8 @@ code{font-family:var(--mono);font-size:.85em;background:var(--card);
 
 /* ---------- hero figure ---------- */
 figure.split{margin:2.4rem 0 1rem;padding:0}
-@media(min-width:1000px){figure.split{width:58rem;margin-left:-8.5rem;margin-right:-8.5rem}
-  figure.split .legend,figure.split figcaption{max-width:41rem;margin-left:auto;margin-right:auto}}
+figure.split{margin-inline:calc((100% - min(58rem,100vw - 3rem)) / 2)}
+figure.split .legend,figure.split figcaption{max-width:calc(var(--wrap) - 3rem);margin-inline:auto}
 .canvwrap{position:relative;border:1px solid var(--rule);border-radius:4px;
   background:var(--card);overflow:hidden}
 canvas{display:block;width:100%;height:auto}
@@ -130,8 +132,41 @@ footer a{color:var(--muted)}footer a:hover{color:var(--fg)}
 @keyframes pulse{0%{box-shadow:0 0 0 0 var(--accent-soft)}
   70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
 @media (prefers-reduced-motion:reduce){.badge .dot{animation:none}}
-@media(max-width:600px){body{font-size:17px}h1{font-size:1.72rem}.lede{font-size:1.08rem}
-  main{padding-top:2.2rem}header .wrap{gap:1rem}nav{gap:1rem}}
+/* ---------- responsive tiers ---------- */
+/* small phone */
+@media(max-width:380px){
+  :root{--fs:16px;--h1:1.5rem;--top:1.8rem}
+  .wrap{padding:0 1.1rem}header .wrap{padding:.9rem 1.1rem;gap:.8rem}
+  nav{gap:.85rem}nav a{font-size:.86rem}
+  .cta{display:block;text-align:center;margin:.4rem 0}
+  .badge{font-size:.64rem}.badge+.badge{margin-left:0}
+}
+/* phone */
+@media(min-width:381px) and (max-width:599px){
+  :root{--fs:17px;--h1:1.72rem;--top:2.2rem}
+  header .wrap{gap:1rem}nav{gap:1rem}
+  .badge+.badge{margin-left:0}
+}
+/* tablet */
+@media(min-width:600px) and (max-width:899px){
+  :root{--wrap:40rem;--fs:17.5px;--h1:2rem;--top:2.8rem}
+}
+/* laptop */
+@media(min-width:900px) and (max-width:1439px){
+  :root{--wrap:46rem;--fs:18px;--h1:2.4rem;--top:3.4rem}
+}
+/* desktop */
+@media(min-width:1440px) and (max-width:1799px){
+  :root{--wrap:50rem;--fs:19px;--h1:2.8rem;--top:4.2rem}
+}
+/* large desktop */
+@media(min-width:1800px){
+  :root{--wrap:52rem;--fs:20px;--h1:3.1rem;--top:4.8rem}
+}
+/* short laptop screens — don't let the hero eat the whole fold */
+@media(min-width:900px) and (max-height:820px){
+  :root{--top:2.6rem;--h1:2.25rem}
+}
 </style></head><body>
 <header><div class="wrap">
 <a class="me" href="index.html">Shaikh Muhammad Zain</a>
@@ -157,7 +192,7 @@ wrong, that's the email I most want to receive.</p>
 <footer><div class="wrap">
 <a class="badge" href="https://internship.flyrank.ai/verify/FR-D11-78688-4745F?first_name=Shaikh" target="_blank" rel="noopener"><span class="dot"></span>FlyRank AI Internship — Machine Learning</a>
 <a class="badge" href="https://internship.flyrank.ai/verify/FR-D11-ABB84-E6DFD?first_name=Shaikh" target="_blank" rel="noopener"><span class="dot"></span>FlyRank AI Internship — AI Fluency</a>
-<p>Built with Claude. Every number on this site traces to a committed notebook —
+<p>Every number on this site traces to a committed notebook —
 <a href="https://github.com/ZainDev04/Flyrank-ML-Internship">see for yourself</a>.<br><a href="mailto:smzain20042004@gmail.com">smzain20042004@gmail.com</a></p>
 </div></footer>
 <script>
