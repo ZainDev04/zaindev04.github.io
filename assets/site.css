@@ -138,7 +138,10 @@ nav.primary a:hover::after,nav.primary a[aria-current=page]::after{transform:sca
 @media (max-width:820px){
   nav.primary{display:none}
   .burger{display:grid}
-  .mark{font-size:.8rem;letter-spacing:.12em}
+  .mark{font-size:.8rem;letter-spacing:.12em;white-space:nowrap}
+}
+@media (max-width:400px){
+  .mark{font-size:.7rem;letter-spacing:.08em;gap:.6rem}
 }
 
 /* ---------- 5. type ------------------------------------------------------ */
