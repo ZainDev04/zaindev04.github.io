@@ -386,11 +386,18 @@ footer.site{margin-top:clamp(3rem,8vw,7rem);border-top:1px solid var(--rule);pad
 .credits{margin-top:2rem;font-size:.75rem;color:var(--fg-3);letter-spacing:.04em}
 
 /* ---------- 10. motion --------------------------------------------------- */
-.rv{opacity:0;transform:translateY(14px);transition:opacity .7s var(--ease),transform .7s var(--ease-out)}
-.rv.in{opacity:1;transform:none}
+/* one entrance for the opening block of each page, then a quiet rise on scroll */
+.js .enter{opacity:0;transform:translateY(16px);animation:rise .8s var(--ease-out) forwards}
+.js .e1{animation-delay:.05s}
+.js .e2{animation-delay:.14s}
+.js .e3{animation-delay:.28s}
+.js .e4{animation-delay:.4s}
+@keyframes rise{to{opacity:1;transform:none}}
+.js .rv{opacity:0;transform:translateY(14px);transition:opacity .7s var(--ease),transform .7s var(--ease-out)}
+.js .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .rv{opacity:1;transform:none;transition:none}
+  .js .rv,.js .enter{opacity:1;transform:none;transition:none;animation:none}
   .marquee .track{animation:none}
   .btn:hover,a.ccard:hover{transform:none}
   *{transition-duration:.01ms!important}
