@@ -380,7 +380,6 @@ footer.site{margin-top:clamp(3rem,8vw,7rem);border-top:1px solid var(--rule);pad
   letter-spacing:.14em;text-transform:uppercase;
 }
 .foot-links a:hover{color:var(--fg)}
-.credits{margin-top:2rem;font-size:.75rem;color:var(--fg-3);letter-spacing:.04em}
 
 /* ---------- 10. motion --------------------------------------------------- */
 .rv{opacity:0;transform:translateY(14px);transition:opacity .7s var(--ease),transform .7s var(--ease-out)}
