@@ -408,3 +408,7 @@ footer.site{margin-top:clamp(3rem,8vw,7rem);border-top:1px solid var(--rule);pad
   .btn:hover,a.ccard:hover{transform:none}
   *{transition-duration:.01ms!important}
 }
+
+/* Notice pointing to the current portfolio */
+.moved{margin:0;padding:.6rem var(--gutter);background:#b388ff;color:#111;font:600 .9rem/1.4 var(--body);text-align:center}
+.moved a{color:#111;text-decoration:underline;text-underline-offset:2px}
